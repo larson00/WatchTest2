@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_grey"
+    android:background="#042357"
     android:padding="@dimen/box_inset_layout_padding"
     tools:context=".MainActivity"
     tools:deviceIds="wear">
@@ -13,13 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/inner_frame_layout_padding"
-        app:boxedEdges="all">
+        app:boxedEdges="all"
+        tools:ignore="MissingPrefix">
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_world" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/heartRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/heartRate"
+                android:textColor="#FFC400" />
+
+            <TextView
+                android:id="@+id/bpm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/bpm"
+                android:textColor="#FFC400" />
+        </LinearLayout>
     </FrameLayout>
 </androidx.wear.widget.BoxInsetLayout>

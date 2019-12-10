@@ -1,3 +1,4 @@
 <resources>
-    <string name="hello_world">Hello Round World!</string>
+    <string name="heartRate">Heart Rate: </string>
+    <string name="bpm">72</string>
 </resources>

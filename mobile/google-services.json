@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "548731319822",
+    "firebase_url": "https://heartrate-4f414.firebaseio.com",
+    "project_id": "heartrate-4f414",
+    "storage_bucket": "heartrate-4f414.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548731319822:android:30d2b87ff14af5136fee5f",
+        "android_client_info": {
+          "package_name": "com.example.watchtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548731319822-b75o0p747skp67i2kr3mb6p9nd06rlm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeJMk2LYmmAYD9BvQwu5cbm080qLxnih4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548731319822-b75o0p747skp67i2kr3mb6p9nd06rlm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

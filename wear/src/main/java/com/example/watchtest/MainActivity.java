@@ -1,6 +1,7 @@
 package com.example.watchtest;
 
 import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
@@ -13,6 +14,8 @@ import com.google.android.gms.wearable.DataClient;
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataItem;
+import com.google.android.gms.wearable.DataMap;
+import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
@@ -30,6 +33,8 @@ public class MainActivity extends WearableActivity implements DataClient.OnDataC
     private Sensor mHeartRateSensor;
     private Sensor mAvailableSensor;
     private Integer currentValue=0;
+    private Integer heartRate;
+    private String retrieveMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,14 @@ public class MainActivity extends WearableActivity implements DataClient.OnDataC
                 Log.i(TAG, sensor1.getName() + ": " + mAvailableSensor.getType());
             }
         }
-
-
         mDataClient = Wearable.getDataClient(this);
+    }
+    private void startMeasure() {
+        boolean sensorRegistered = mSensorManager.registerListener((SensorEventListener)
+                this, mHeartRateSensor, SensorManager.SENSOR_DELAY_FASTEST);
+    }
+    private void stopMeasure() {
+        mSensorManager.unregisterListener((SensorEventListener) this);
     }
 
     @Override
@@ -77,14 +87,24 @@ public class MainActivity extends WearableActivity implements DataClient.OnDataC
 
     @Override
     public void onDataChanged(DataEventBuffer dataEvents) {
-        for (DataEvent event : dataEvents) {
-            if (event.getType() == DataEvent.TYPE_DELETED) {
-                Log.d(TAG, "DataItem deleted: " + event.getDataItem().getUri());
-            } else if (event.getType() == DataEvent.TYPE_CHANGED) {
-                Log.d(TAG, "DataItem changed: " + event.getDataItem().getUri());
-            }
-        }
+//        for (DataEvent dataEvent : dataEvents) {
+//            if (dataEvent.getType() == DataEvent.TYPE_DELETED) {
+//                Log.d(TAG, "DataItem deleted: " + dataEvent.getDataItem().getUri());
+//            } else if (dataEvent.getType() == DataEvent.TYPE_CHANGED) {
+//                Log.d(TAG, "DataItem changed: " + dataEvent.getDataItem().getUri());
+//            }
+//        }
+        for(DataEvent dataEvent : dataEvents){
+            if (dataEvent.getType() == DataEvent.TYPE_CHANGED) {
+                DataItem item = dataEvent.getDataItem();
+                if(item.getUri().getPath().compareTo("/heartrate") == 0){
+                    DataMap dataMap =
+                            DataMapItem.fromDataItem(item).getDataMap();
+                    heartRate = dataMap.getInt("heart-rate");
+                   // retrieveMessage(Integer.toString(heartRate));
+                } } }
     }
+
 
 
     // Create a data map and put data in it
