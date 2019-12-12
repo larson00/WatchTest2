@@ -1,4 +1,5 @@
 <resources>
     <string name="heartRate">Heart Rate: </string>
-    <string name="bpm">72</string>
+    <string name="alertText"></string>
+
 </resources>
