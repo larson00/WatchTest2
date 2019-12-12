@@ -47,6 +47,7 @@ public class MainActivity extends WearableActivity implements DataClient.OnDataC
         // SensorManager
         mSensorManager = ((SensorManager)getSystemService(SENSOR_SERVICE));
         mHeartRateSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
+
         // initialise API client for sending data to phone here
         mDataClient = Wearable.getDataClient(this);
     }
